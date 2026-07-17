@@ -90,4 +90,82 @@ def construir_dim_fecha(df):
     # Miembro centinela para fechas nulas
     filas.append({"id_fecha": -1, "fecha": None, "anio": None, "mes": None,
                   "nombre_mes": "sin fecha", "trimestre": None, "dia": None})
-    return pd.DataFrame(filas)
+    dim = pd.DataFrame(filas)
+    # Enteros nullable: evita que anio/mes/trimestre/dia se conviertan a
+    # float64 (p.ej. 2026.0) al mezclar con los None de la fila centinela.
+    for col in ["anio", "mes", "trimestre", "dia"]:
+        dim[col] = dim[col].astype("Int64")
+    return dim
+
+
+def _mapa(dim, col_id, col_valor):
+    return dict(zip(dim[col_valor].astype(str), dim[col_id]))
+
+
+def construir_fact_y_bridge(df, dims):
+    df = df.reset_index(drop=True)
+    if "cluster" not in df.columns:
+        df = df.assign(cluster=0)
+
+    m_emp = _mapa(dims["dim_empresa"], "id_empresa", "nombre_empresa")
+    m_ubi = _mapa(dims["dim_ubicacion"], "id_ubicacion", "ubicacion")
+    m_fue = _mapa(dims["dim_fuente"], "id_fuente", "fuente")
+    m_tec = _mapa(dims["dim_tecnologia"], "id_tecnologia", "tecnologia")
+
+    filas_fact, filas_bridge = [], []
+    for i, fila in df.iterrows():
+        smin = fila.get("salario_min")
+        smax = fila.get("salario_max")
+        if pd.notna(smin) and pd.notna(smax):
+            sprom = (float(smin) + float(smax)) / 2
+        else:
+            sprom = None
+        techs = [t.strip() for t in str(fila.get("tecnologias") or "").split("|") if t.strip()]
+        filas_fact.append({
+            "id_oferta": i,
+            "id_empresa": m_emp.get(str(fila.get("empresa") or "desconocido"), -1),
+            "id_ubicacion": m_ubi.get(str(fila.get("ubicacion") or "desconocido"), -1),
+            "id_fuente": m_fue.get(str(fila.get("fuente") or "desconocido"), -1),
+            "id_fecha_scrape": fecha_a_id(fila.get("fecha_scrape")),
+            "id_fecha_publicacion": fecha_a_id(fila.get("fecha")),
+            "id_cluster": int(fila.get("cluster") if pd.notna(fila.get("cluster")) else 0),
+            "salario_min": smin if pd.notna(smin) else None,
+            "salario_max": smax if pd.notna(smax) else None,
+            "salario_promedio": sprom,
+            "num_tecnologias": len(techs),
+            "titulo": fila.get("titulo"),
+        })
+        for t in techs:
+            if t in m_tec:
+                filas_bridge.append({"id_oferta": i, "id_tecnologia": m_tec[t]})
+
+    fact = pd.DataFrame(filas_fact)
+    bridge = pd.DataFrame(filas_bridge, columns=["id_oferta", "id_tecnologia"])
+    return fact, bridge
+
+
+def construir_modelo_estrella(df=None, salida_dir=DATA_POWERBI):
+    """Orquesta dimensiones + hechos + puente y escribe los 8 CSV en salida_dir."""
+    if df is None:
+        if not Path(OFERTAS_HISTORICO_CSV).exists():
+            logger.warning("No hay histórico; modelo estrella no generado.")
+            return {}
+        df = pd.read_csv(OFERTAS_HISTORICO_CSV)
+
+    dims = {
+        "dim_empresa": construir_dim_empresa(df),
+        "dim_ubicacion": construir_dim_ubicacion(df),
+        "dim_fuente": construir_dim_fuente(df),
+        "dim_tecnologia": construir_dim_tecnologia(),
+        "dim_cluster": construir_dim_cluster(df),
+        "dim_fecha": construir_dim_fecha(df),
+    }
+    fact, bridge = construir_fact_y_bridge(df, dims)
+    tablas = {**dims, "fact_ofertas": fact, "bridge_oferta_tecnologia": bridge}
+
+    salida = Path(salida_dir)
+    salida.mkdir(parents=True, exist_ok=True)
+    for nombre, tabla in tablas.items():
+        tabla.to_csv(salida / f"{nombre}.csv", index=False)
+    logger.info(f"Modelo estrella: {len(tablas)} tablas escritas en {salida}")
+    return tablas

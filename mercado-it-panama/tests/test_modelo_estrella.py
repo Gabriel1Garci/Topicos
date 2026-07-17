@@ -7,6 +7,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from src.procesamiento.modelo_estrella import (
     construir_dim_empresa, construir_dim_ubicacion, construir_dim_fuente,
     construir_dim_tecnologia, construir_dim_cluster, construir_dim_fecha, fecha_a_id,
+    construir_fact_y_bridge, construir_modelo_estrella,
 )
 
 def df_muestra():
@@ -62,3 +63,61 @@ def test_dim_fecha_unica_y_atributos():
 def test_fecha_a_id_nulo():
     assert fecha_a_id(None) == -1
     assert fecha_a_id("2026-05-10") == 20260510
+
+def test_dim_fecha_columnas_numericas_son_int64_nullable():
+    dim = construir_dim_fecha(df_muestra())
+    for col in ["anio", "mes", "trimestre", "dia"]:
+        assert dim[col].dtype == "Int64"
+    fila = dim[dim["id_fecha"] == 20260510].iloc[0]
+    assert fila["anio"] == 2026
+    centinela = dim[dim["id_fecha"] == -1].iloc[0]
+    assert pd.isna(centinela["anio"])
+
+
+def _dims(df):
+    return {
+        "dim_empresa": construir_dim_empresa(df),
+        "dim_ubicacion": construir_dim_ubicacion(df),
+        "dim_fuente": construir_dim_fuente(df),
+        "dim_tecnologia": construir_dim_tecnologia(),
+        "dim_cluster": construir_dim_cluster(df),
+        "dim_fecha": construir_dim_fecha(df),
+    }
+
+def test_fact_fks_validas():
+    df = df_muestra()
+    dims = _dims(df)
+    fact, bridge = construir_fact_y_bridge(df, dims)
+    assert len(fact) == 3
+    assert fact["id_empresa"].isin(dims["dim_empresa"]["id_empresa"]).all()
+    assert fact["id_fuente"].isin(dims["dim_fuente"]["id_fuente"]).all()
+    # fecha nula → id_fecha_publicacion == -1 (fila 2)
+    assert (fact["id_fecha_publicacion"] == -1).sum() == 1
+
+def test_fact_salario_promedio():
+    df = df_muestra()
+    fact, _ = construir_fact_y_bridge(df, _dims(df))
+    fila0 = fact[fact["id_oferta"] == 0].iloc[0]
+    assert fila0["salario_promedio"] == 1500.0  # (1000+2000)/2
+
+def test_bridge_cubre_tecnologias():
+    df = df_muestra()
+    dims = _dims(df)
+    _, bridge = construir_fact_y_bridge(df, dims)
+    # oferta 0 tiene python+django → 2 filas puente
+    assert (bridge["id_oferta"] == 0).sum() == 2
+    assert bridge["id_tecnologia"].isin(dims["dim_tecnologia"]["id_tecnologia"]).all()
+
+def test_orquestador_escribe_8_csv(tmp_path):
+    tablas = construir_modelo_estrella(df=df_muestra(), salida_dir=tmp_path)
+    esperados = ["dim_empresa", "dim_ubicacion", "dim_fuente", "dim_tecnologia",
+                 "dim_cluster", "dim_fecha", "fact_ofertas", "bridge_oferta_tecnologia"]
+    for nombre in esperados:
+        assert (tmp_path / f"{nombre}.csv").exists(), f"falta {nombre}.csv"
+        assert nombre in tablas
+
+def test_orquestador_csv_fecha_sin_sufijo_flotante(tmp_path):
+    construir_modelo_estrella(df=df_muestra(), salida_dir=tmp_path)
+    contenido = (tmp_path / "dim_fecha.csv").read_text(encoding="utf-8")
+    assert "2026.0" not in contenido
+    assert "2026" in contenido
