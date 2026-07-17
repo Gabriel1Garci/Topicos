@@ -56,3 +56,34 @@ def test_resumen_datos_missing_salario_min():
     assert "N/D" in ctx
     assert "2" in ctx  # total ofertas
     assert "python" in ctx.lower()
+
+
+def test_extraer_skills_fallback_lista_vacia(monkeypatch):
+    monkeypatch.setattr(oc, "ollama_disponible", lambda: False)
+    assert oc.extraer_skills_llm("dev python y react") == []
+
+
+def test_extraer_skills_parsea_respuesta(monkeypatch):
+    oc._CACHE_SKILLS.clear()
+    monkeypatch.setattr(oc, "ollama_disponible", lambda: True)
+    monkeypatch.setattr(oc, "generar", lambda p: (True, "python, react, herramienta_x"))
+    skills = oc.extraer_skills_llm("buscamos dev python y react")
+    assert "python" in skills and "react" in skills
+    assert "herramienta_x" not in skills  # solo techs conocidas del TECH_DICT
+
+
+def test_skills_emergentes_requiere_dos_snapshots(monkeypatch):
+    monkeypatch.setattr(oc, "ollama_disponible", lambda: True)
+    df = pd.DataFrame([{"tecnologias": "python", "fecha_scrape": "2026-07-16"}])
+    resp = oc.skills_emergentes(df)
+    assert "snapshot" in resp.lower()
+
+
+def test_skills_emergentes_llama_llm(monkeypatch):
+    monkeypatch.setattr(oc, "ollama_disponible", lambda: True)
+    monkeypatch.setattr(oc, "generar", lambda p: (True, "análisis de tendencias"))
+    df = pd.DataFrame([
+        {"tecnologias": "python", "fecha_scrape": "2026-07-16"},
+        {"tecnologias": "python|rust", "fecha_scrape": "2026-07-17"},
+    ])
+    assert oc.skills_emergentes(df) == "análisis de tendencias"
