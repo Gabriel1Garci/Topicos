@@ -52,7 +52,7 @@ def resumen_datos(df: pd.DataFrame) -> str:
     techs = techs[techs != ""]
     top = Counter(techs).most_common(10)
     top_str = ", ".join(f"{t} ({n})" for t, n in top) or "sin datos"
-    sal = pd.to_numeric(df.get("salario_min"), errors="coerce").dropna()
+    sal = pd.to_numeric(df.get("salario_min", pd.Series(dtype=float)), errors="coerce").dropna()
     sal_prom = f"${sal.mean():,.0f}" if len(sal) else "N/D"
     fuentes = ", ".join(sorted(df.get("fuente", pd.Series(dtype=str)).dropna().astype(str).unique()))
     return (
