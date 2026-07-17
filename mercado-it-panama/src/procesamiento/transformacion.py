@@ -6,12 +6,13 @@ Solo incluye fuentes del mercado laboral de Panamá.
 """
 import json
 import logging
+import datetime
 import pandas as pd
 from pathlib import Path
 
 from src.config import (
     COMPUTRABAJO_RAW, KONZERTA_RAW, KAGGLE_EJEMPLO,
-    OFERTAS_CSV, DATA_PROCESSED
+    OFERTAS_CSV, DATA_PROCESSED, OFERTAS_HISTORICO_CSV
 )
 from src.procesamiento.limpieza import limpiar_texto, parsear_salario, eliminar_duplicados_nulos
 from src.procesamiento.extraccion_tecnologias import extraer_tecnologias
@@ -20,7 +21,7 @@ logger = logging.getLogger(__name__)
 
 ESQUEMA_COLUMNAS = [
     "titulo", "empresa", "ubicacion", "tecnologias",
-    "salario_min", "salario_max", "fecha", "fuente", "descripcion"
+    "salario_min", "salario_max", "fecha", "fuente", "descripcion", "fecha_scrape",
 ]
 
 
@@ -54,6 +55,7 @@ def transformar_remotive(ofertas_crudas: list) -> pd.DataFrame:
             "fecha":       _parsear_fecha(oferta.get("publication_date")),
             "fuente":      "remotive",
             "descripcion": descripcion,
+            "fecha_scrape": datetime.date.today().isoformat(),
         })
     logger.info(f"Remotive: {len(filas)} ofertas transformadas.")
     return pd.DataFrame(filas, columns=ESQUEMA_COLUMNAS)
@@ -79,6 +81,7 @@ def transformar_kaggle(df_raw: pd.DataFrame) -> pd.DataFrame:
             "fecha":       _parsear_fecha(fila.get("fecha_raw")),
             "fuente":      "kaggle",
             "descripcion": descripcion,
+            "fecha_scrape": datetime.date.today().isoformat(),
         })
     logger.info(f"Kaggle: {len(filas)} ofertas transformadas.")
     return pd.DataFrame(filas, columns=ESQUEMA_COLUMNAS)
@@ -104,6 +107,7 @@ def transformar_computrabajo(ofertas_crudas: list) -> pd.DataFrame:
             "fecha":       _parsear_fecha(oferta.get("fecha")),
             "fuente":      "computrabajo",
             "descripcion": descripcion,
+            "fecha_scrape": datetime.date.today().isoformat(),
         })
     logger.info(f"Computrabajo: {len(filas)} ofertas transformadas.")
     return pd.DataFrame(filas, columns=ESQUEMA_COLUMNAS)
@@ -129,6 +133,7 @@ def transformar_konzerta(ofertas_crudas: list) -> pd.DataFrame:
             "fecha":       _parsear_fecha(oferta.get("fecha")),
             "fuente":      "konzerta",
             "descripcion": descripcion,
+            "fecha_scrape": datetime.date.today().isoformat(),
         })
     logger.info(f"Konzerta: {len(filas)} ofertas transformadas.")
     return pd.DataFrame(filas, columns=ESQUEMA_COLUMNAS)
@@ -183,3 +188,21 @@ def construir_dataset_unificado() -> pd.DataFrame:
     logger.info(f"Dataset unificado: {len(df_total)} filas guardadas en {OFERTAS_CSV}")
 
     return df_total
+
+
+def anexar_historico(df: pd.DataFrame, ruta=OFERTAS_HISTORICO_CSV) -> pd.DataFrame:
+    """
+    Anexa el snapshot actual (df) al histórico acumulado en `ruta`.
+    Cada corrida agrega sus filas; se conserva todo el historial temporal.
+    Retorna el histórico completo tras anexar.
+    """
+    ruta = Path(ruta)
+    ruta.parent.mkdir(parents=True, exist_ok=True)
+    if ruta.exists():
+        previo = pd.read_csv(ruta)
+        total = pd.concat([previo, df], ignore_index=True)
+    else:
+        total = df.copy()
+    total.to_csv(ruta, index=False)
+    logger.info(f"Histórico: {len(total)} filas acumuladas en {ruta}")
+    return total
