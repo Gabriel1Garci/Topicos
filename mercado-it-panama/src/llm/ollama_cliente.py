@@ -43,7 +43,7 @@ def generar(prompt: str):
 
 
 def _techs_serie(df):
-    return (df["tecnologias"].fillna("").astype(str).str.split("|").explode().str.strip())
+    return (df.get("tecnologias", pd.Series(dtype=str)).fillna("").astype(str).str.split("|").explode().str.strip())
 
 
 def resumen_datos(df: pd.DataFrame) -> str:
@@ -54,7 +54,7 @@ def resumen_datos(df: pd.DataFrame) -> str:
     top_str = ", ".join(f"{t} ({n})" for t, n in top) or "sin datos"
     sal = pd.to_numeric(df.get("salario_min"), errors="coerce").dropna()
     sal_prom = f"${sal.mean():,.0f}" if len(sal) else "N/D"
-    fuentes = ", ".join(sorted(df["fuente"].dropna().astype(str).unique()))
+    fuentes = ", ".join(sorted(df.get("fuente", pd.Series(dtype=str)).dropna().astype(str).unique()))
     return (
         f"Total de ofertas: {len(df)}. "
         f"Fuentes: {fuentes}. "

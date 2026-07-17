@@ -34,3 +34,9 @@ def test_consulta_usa_ollama_si_disponible(monkeypatch):
 def test_generar_resumen_fallback(monkeypatch):
     monkeypatch.setattr(oc, "ollama_disponible", lambda: False)
     assert oc.generar_resumen(df_muestra()) == oc.MSG_FALLBACK
+
+def test_generar_resumen_usa_ollama_si_disponible(monkeypatch):
+    monkeypatch.setattr(oc, "ollama_disponible", lambda: True)
+    monkeypatch.setattr(oc, "generar", lambda prompt: (True, "resumen de prueba"))
+    resp = oc.generar_resumen(df_muestra())
+    assert resp == "resumen de prueba"
