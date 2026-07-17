@@ -35,6 +35,6 @@ Tecnologías Únicas = DISTINCTCOUNT(bridge_oferta_tecnologia[id_tecnologia])
 
 ## 5. Visualizaciones sugeridas
 - Barras: top tecnologías (dim_tecnologia + conteo del bridge).
-- Líneas: ofertas por mes (dim_fecha[anio-mes]) → tendencia temporal.
+- Líneas: ofertas por mes (dim_fecha[nombre_mes] y dim_fecha[anio]) → tendencia temporal.
 - Tarjetas: los KPIs de arriba.
 - Segmentador por `dim_tecnologia[categoria]` y `dim_fuente[fuente]`.
