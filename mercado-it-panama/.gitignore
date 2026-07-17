@@ -9,3 +9,5 @@ data/processed/*
 !data/processed/.gitkeep
 *.ipynb_checkpoints
 .DS_Store
+Parcial_2
+.superpowers
