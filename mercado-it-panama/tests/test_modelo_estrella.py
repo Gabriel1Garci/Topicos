@@ -121,3 +121,28 @@ def test_orquestador_csv_fecha_sin_sufijo_flotante(tmp_path):
     contenido = (tmp_path / "dim_fecha.csv").read_text(encoding="utf-8")
     assert "2026.0" not in contenido
     assert "2026" in contenido
+
+
+def test_fact_fks_validas_con_valores_nulos():
+    # Reproduce el bug: NaN es truthy en Python, así que `valor or "desconocido"`
+    # nunca hace fallback para un NaN real (a diferencia de None o "") y termina
+    # convertido en el string literal "nan", que no existe en las dimensiones.
+    df = pd.DataFrame([
+        {"titulo": "dev con nulos", "empresa": float("nan"), "ubicacion": float("nan"),
+         "tecnologias": "python", "salario_min": 1000.0, "salario_max": 2000.0,
+         "fecha": "2026-05-10", "fuente": float("nan"), "descripcion": "d",
+         "fecha_scrape": "2026-07-16", "cluster": 0},
+        {"titulo": "dev sin tecnologias", "empresa": "acme", "ubicacion": "panamá",
+         "tecnologias": float("nan"), "salario_min": 1500.0, "salario_max": 1500.0,
+         "fecha": "2026-05-10", "fuente": "konzerta", "descripcion": "d",
+         "fecha_scrape": "2026-07-16", "cluster": 0},
+    ])
+    dims = _dims(df)
+    fact, _ = construir_fact_y_bridge(df, dims)
+
+    assert fact["id_empresa"].isin(dims["dim_empresa"]["id_empresa"]).all()
+    assert fact["id_ubicacion"].isin(dims["dim_ubicacion"]["id_ubicacion"]).all()
+    assert fact["id_fuente"].isin(dims["dim_fuente"]["id_fuente"]).all()
+
+    fila_nan_tech = fact[fact["id_oferta"] == 1].iloc[0]
+    assert fila_nan_tech["num_tecnologias"] == 0

@@ -102,6 +102,15 @@ def _mapa(dim, col_id, col_valor):
     return dict(zip(dim[col_valor].astype(str), dim[col_id]))
 
 
+def _valor_o_desconocido(valor, default="desconocido"):
+    """Convierte a str, tratando None/NaN como `default` (Python's `or` no
+    sirve aquí: float('nan') es truthy, así que un NaN real nunca activaría
+    el fallback y terminaría convertido en el string literal "nan")."""
+    if valor is None or (isinstance(valor, float) and pd.isna(valor)):
+        return default
+    return str(valor)
+
+
 def construir_fact_y_bridge(df, dims):
     df = df.reset_index(drop=True)
     if "cluster" not in df.columns:
@@ -120,12 +129,17 @@ def construir_fact_y_bridge(df, dims):
             sprom = (float(smin) + float(smax)) / 2
         else:
             sprom = None
-        techs = [t.strip() for t in str(fila.get("tecnologias") or "").split("|") if t.strip()]
+        valor_tech = fila.get("tecnologias")
+        texto_tech = (
+            "" if valor_tech is None or (isinstance(valor_tech, float) and pd.isna(valor_tech))
+            else str(valor_tech)
+        )
+        techs = [t.strip() for t in texto_tech.split("|") if t.strip()]
         filas_fact.append({
             "id_oferta": i,
-            "id_empresa": m_emp.get(str(fila.get("empresa") or "desconocido"), -1),
-            "id_ubicacion": m_ubi.get(str(fila.get("ubicacion") or "desconocido"), -1),
-            "id_fuente": m_fue.get(str(fila.get("fuente") or "desconocido"), -1),
+            "id_empresa": m_emp.get(_valor_o_desconocido(fila.get("empresa")), -1),
+            "id_ubicacion": m_ubi.get(_valor_o_desconocido(fila.get("ubicacion")), -1),
+            "id_fuente": m_fue.get(_valor_o_desconocido(fila.get("fuente")), -1),
             "id_fecha_scrape": fecha_a_id(fila.get("fecha_scrape")),
             "id_fecha_publicacion": fecha_a_id(fila.get("fecha")),
             "id_cluster": int(fila.get("cluster") if pd.notna(fila.get("cluster")) else 0),
