@@ -105,10 +105,14 @@ def _mapa(dim, col_id, col_valor):
 def _valor_o_desconocido(valor, default="desconocido"):
     """Convierte a str, tratando None/NaN como `default` (Python's `or` no
     sirve aquí: float('nan') es truthy, así que un NaN real nunca activaría
-    el fallback y terminaría convertido en el string literal "nan")."""
+    el fallback y terminaría convertido en el string literal "nan"). Un
+    string vacío también cae a `default`, igual que `_dim_desde_columna`
+    (que normaliza "" -> default al construir la dimensión); si no, "" nunca
+    encontraría match en el mapa de la dimensión y caería al FK -1."""
     if valor is None or (isinstance(valor, float) and pd.isna(valor)):
         return default
-    return str(valor)
+    texto = str(valor)
+    return texto if texto != "" else default
 
 
 def construir_fact_y_bridge(df, dims):
@@ -129,11 +133,7 @@ def construir_fact_y_bridge(df, dims):
             sprom = (float(smin) + float(smax)) / 2
         else:
             sprom = None
-        valor_tech = fila.get("tecnologias")
-        texto_tech = (
-            "" if valor_tech is None or (isinstance(valor_tech, float) and pd.isna(valor_tech))
-            else str(valor_tech)
-        )
+        texto_tech = _valor_o_desconocido(fila.get("tecnologias"), default="")
         techs = [t.strip() for t in texto_tech.split("|") if t.strip()]
         filas_fact.append({
             "id_oferta": i,

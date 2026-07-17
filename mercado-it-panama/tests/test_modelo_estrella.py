@@ -146,3 +146,32 @@ def test_fact_fks_validas_con_valores_nulos():
 
     fila_nan_tech = fact[fact["id_oferta"] == 1].iloc[0]
     assert fila_nan_tech["num_tecnologias"] == 0
+
+
+def test_fact_fks_validas_con_string_vacio():
+    # `_dim_desde_columna` normaliza "" -> "desconocido" al construir la
+    # dimensión (no queda ninguna fila con clave ""), así que
+    # `_valor_o_desconocido` debe hacer el mismo fallback para "" real
+    # (no NaN, no None); si no, "" nunca matchearía en el mapa y el FK
+    # caería a -1 (referencia inexistente).
+    df = pd.DataFrame([
+        {"titulo": "dev con vacios", "empresa": "", "ubicacion": "",
+         "tecnologias": "python", "salario_min": 1000.0, "salario_max": 2000.0,
+         "fecha": "2026-05-10", "fuente": "", "descripcion": "d",
+         "fecha_scrape": "2026-07-16", "cluster": 0},
+        {"titulo": "dev normal", "empresa": "acme", "ubicacion": "panamá",
+         "tecnologias": "python", "salario_min": 1500.0, "salario_max": 1500.0,
+         "fecha": "2026-05-10", "fuente": "konzerta", "descripcion": "d",
+         "fecha_scrape": "2026-07-16", "cluster": 0},
+    ])
+    dims = _dims(df)
+    fact, _ = construir_fact_y_bridge(df, dims)
+
+    assert fact["id_empresa"].isin(dims["dim_empresa"]["id_empresa"]).all()
+    assert fact["id_ubicacion"].isin(dims["dim_ubicacion"]["id_ubicacion"]).all()
+    assert fact["id_fuente"].isin(dims["dim_fuente"]["id_fuente"]).all()
+
+    fila_vacia = fact[fact["id_oferta"] == 0].iloc[0]
+    assert fila_vacia["id_empresa"] != -1
+    assert fila_vacia["id_ubicacion"] != -1
+    assert fila_vacia["id_fuente"] != -1
