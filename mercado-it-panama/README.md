@@ -109,6 +109,16 @@ streamlit run dashboard/app.py
 
 Abrir `http://localhost:8501` en el navegador.
 
+### Power BI
+Tras `python run_pipeline.py`, los CSV del modelo estrella quedan en `data/powerbi/`.
+Ver `docs/GUIA_POWERBI.md` para importarlos y crear las relaciones.
+
+### Asistente IA (Ollama)
+1. Instala [Ollama](https://ollama.com) y ejecútalo: `ollama serve`
+2. Descarga el modelo: `ollama pull llama3.2:3b`
+3. Abre el dashboard y ve a la pestaña "🤖 Asistente IA".
+Si Ollama no está corriendo, el resto del proyecto funciona igual.
+
 ---
 
 ## Estructura del proyecto
@@ -150,7 +160,7 @@ El scraper de Computrabajo puede devolver 0 resultados si el sitio renderiza con
 
 ## Limitaciones y trabajo futuro
 
-- **LLMs / Chatbot:** No implementado en esta fase por restricción del curso. Una fase posterior podría añadir extracción semántica de habilidades y un chatbot de consulta sobre el dataset.
+- **LLM (Ollama local):** consultas en lenguaje natural, resúmenes, extracción de skills y análisis de skills emergentes. Ver pestaña "Asistente IA" del dashboard.
 - **Cobertura geográfica:** Se puede ampliar a otras bolsas de trabajo de Panamá.
 - **Actualización automática:** Se puede agregar scheduling para re-ejecutar el pipeline periódicamente y mantener los datos frescos.
 - **Fuente Computrabajo:** Requiere Playwright/Selenium para sitios con JavaScript — identificado como mejora para la siguiente fase.
