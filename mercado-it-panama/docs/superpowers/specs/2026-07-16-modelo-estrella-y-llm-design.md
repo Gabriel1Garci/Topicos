@@ -1,4 +1,4 @@
-# Diseño: Modelo Estrella para Power BI + Integración de LLM (Gemini)
+# Diseño: Modelo Estrella para Power BI + Integración de LLM (Ollama local)
 
 **Fecha:** 2026-07-16
 **Grupo:** 4 — Análisis del Mercado Laboral IT en Panamá
@@ -25,8 +25,10 @@ para analizar tendencias ni skills emergentes.
 
 ## Decisiones tomadas (brainstorming)
 
-- **LLM:** Google Gemini (gratis, API key sin tarjeta desde aistudio.google.com).
-  Con *fallback*: si no hay `GEMINI_API_KEY`, el módulo avisa y el resto del proyecto
+- **LLM:** Ollama local (gratis, sin API key ni internet). Modelo ligero por defecto
+  (`llama3.2:3b`), configurable. Se eligió local para **no depender de cuota de tokens
+  ni de conexión el día de la demo**. Con *fallback*: si el servicio de Ollama no está
+  corriendo o el modelo no está descargado, el módulo avisa y el resto del proyecto
   sigue funcionando.
 - **Funciones del LLM:** las cuatro — consultas en lenguaje natural, generación de
   resúmenes, extracción de skills con LLM (complementa el regex), y skills emergentes.
@@ -87,22 +89,25 @@ Grano de la tabla de hechos: **una fila por oferta por snapshot**.
 
 ### 3. Módulo LLM (`src/llm/`)
 
-- `src/llm/gemini_cliente.py` — cliente único a Gemini; lee `GEMINI_API_KEY` del entorno;
-  fallback claro si no está configurada.
+- `src/llm/ollama_cliente.py` — cliente único a Ollama (API HTTP local en
+  `http://localhost:11434`); modelo configurable (`OLLAMA_MODEL`, por defecto
+  `llama3.2:3b`); fallback claro si el servicio no responde o el modelo no está.
 - Funciones (todas sobre datos ya procesados, con estadísticas agregadas como contexto):
   1. `consulta_natural(pregunta)` — responde preguntas sobre el dataset en español.
   2. `generar_resumen()` — resumen ejecutivo del mercado.
   3. `extraer_skills_llm(texto)` — extracción de skills/salario del texto crudo;
-     **paso opcional** del pipeline que complementa el regex, con **caché** para no gastar
-     cuota; el regex (`extraccion_tecnologias.py`) sigue como respaldo y como camino por defecto.
+     **paso opcional** del pipeline que complementa el regex, con **caché** para evitar
+     re-inferir (la inferencia local hace una llamada por oferta y puede ser lenta en
+     hardware modesto); el regex (`extraccion_tecnologias.py`) sigue como respaldo y como
+     camino por defecto.
   4. `skills_emergentes()` — compara conteos de tecnologías entre snapshots del histórico y
-     Gemini explica cuáles crecen.
+     el LLM explica cuáles crecen.
 
 ### 4. Dashboard Streamlit
 
 - Se mantiene el dashboard actual.
 - Se agrega pestaña **"Asistente IA"**: chat de consultas, botón de resumen ejecutivo, y
-  vista de skills emergentes. Degrada con elegancia si no hay API key.
+  vista de skills emergentes. Degrada con elegancia si Ollama no está corriendo.
 
 ### 5. KPIs y documentación
 
@@ -116,10 +121,12 @@ Grano de la tabla de hechos: **una fila por oferta por snapshot**.
 
 ## Manejo de errores
 
-- **Sin API key:** el módulo LLM y la pestaña de IA muestran un aviso; el pipeline, el ML,
-  el dashboard base y la generación del modelo estrella funcionan igual.
-- **Cuota Gemini agotada / sin internet:** se captura la excepción y se informa al usuario;
-  la extracción de skills cae al regex.
+- **Ollama no instalado / servicio apagado / modelo no descargado:** el módulo LLM y la
+  pestaña de IA muestran un aviso con la instrucción para levantarlo (`ollama serve` /
+  `ollama pull llama3.2:3b`); el pipeline, el ML, el dashboard base y la generación del
+  modelo estrella funcionan igual.
+- **Fallo de inferencia:** se captura la excepción y se informa al usuario; la extracción
+  de skills cae al regex.
 - **Histórico vacío / un solo snapshot:** skills emergentes informa que necesita ≥2 snapshots.
 - **Fuentes vacías:** el modelo estrella genera tablas vacías con encabezados correctos
   (no rompe la importación en Power BI).
@@ -129,8 +136,8 @@ Grano de la tabla de hechos: **una fila por oferta por snapshot**.
 - `modelo_estrella.py`: dado un dataset unificado de ejemplo, verificar que cada dimensión
   no tenga IDs duplicados, que las FKs de la tabla de hechos existan en sus dimensiones, y
   que la puente cubra todas las tecnologías de cada oferta.
-- `gemini_cliente.py`: con la key ausente, las funciones retornan el mensaje de fallback sin
-  lanzar excepción (mock del cliente Gemini; no se llama a la red en los tests).
+- `ollama_cliente.py`: con el servicio ausente, las funciones retornan el mensaje de fallback
+  sin lanzar excepción (mock del cliente HTTP; no se llama a Ollama en los tests).
 - Mantener los 27 tests actuales en verde.
 
 ## Fuera de alcance (YAGNI)
@@ -138,3 +145,4 @@ Grano de la tabla de hechos: **una fila por oferta por snapshot**.
 - Construir los reportes de Power BI en sí (los arma el grupo en Power BI Desktop).
 - Scheduling automático del pipeline.
 - Fine-tuning o embeddings/RAG del LLM (basta con contexto agregado en el prompt).
+- Instalación de Ollama en sí (la hace el grupo una vez; la guía queda en la doc).
