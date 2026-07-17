@@ -51,6 +51,12 @@ def main():
     print(f"      OK Fuentes: {df['fuente'].value_counts().to_dict()}")
     print(f"      OK Clusters encontrados: {len(resultados_ml.get('clusters', {}))}")
 
+    reg = resultados_ml.get("regresion")
+    if reg:
+        print(f"      OK Regresion salario — MAE: ${reg['mae']:,.0f} | R2: {reg['r2']:.3f}")
+    else:
+        print("      INFO Regresion omitida (pocos datos salariales)")
+
     # ── Paso 4: Modelo estrella para Power BI ─────────────────
     print("\n[4/4] Generando modelo estrella para Power BI...")
     from src.procesamiento.modelo_estrella import construir_modelo_estrella

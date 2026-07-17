@@ -43,7 +43,20 @@ def generar(prompt: str):
 
 
 def _techs_serie(df):
-    return (df.get("tecnologias", pd.Series(dtype=str)).fillna("").astype(str).str.split("|").explode().str.strip())
+    """
+    Serie plana de tecnologías individuales a partir de la columna `tecnologias`.
+    Tolera dos formatos de celda: string separado por `|` (CSV histórico) o
+    lista ya parseada (como hace `dashboard/app.py` antes de llamar al LLM).
+    """
+    def _normalizar(valor):
+        if isinstance(valor, list):
+            return valor
+        if valor is None or (isinstance(valor, float) and pd.isna(valor)):
+            return []
+        return [t.strip() for t in str(valor).split("|") if t.strip()]
+
+    s = df.get("tecnologias", pd.Series(dtype=object))
+    return s.apply(_normalizar).explode().dropna().astype(str).str.strip()
 
 
 def resumen_datos(df: pd.DataFrame) -> str:

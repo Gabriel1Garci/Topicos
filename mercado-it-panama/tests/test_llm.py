@@ -58,6 +58,24 @@ def test_resumen_datos_missing_salario_min():
     assert "python" in ctx.lower()
 
 
+def test_resumen_datos_tecnologias_como_lista():
+    """dashboard/app.py parsea `tecnologias` a listas de Python antes de llamar
+    al LLM (ver `parsear_techs` en cargar_datos()). _techs_serie debe tolerar
+    ese formato y no volcar el repr de la lista (p.ej. "['python', 'django']")."""
+    df = pd.DataFrame([
+        {"titulo": "dev python", "empresa": "acme", "ubicacion": "panamá",
+         "tecnologias": ["python", "django"], "salario_min": 1000.0, "salario_max": 2000.0,
+         "fuente": "konzerta"},
+        {"titulo": "react dev", "empresa": "globex", "ubicacion": "remoto",
+         "tecnologias": ["react"], "salario_min": None, "salario_max": None,
+         "fuente": "kaggle"},
+    ])
+    ctx = oc.resumen_datos(df)
+    assert "[" not in ctx and "]" not in ctx
+    assert "python" in ctx.lower()
+    assert "react" in ctx.lower()
+
+
 def test_extraer_skills_fallback_lista_vacia(monkeypatch):
     monkeypatch.setattr(oc, "ollama_disponible", lambda: False)
     assert oc.extraer_skills_llm("dev python y react") == []
