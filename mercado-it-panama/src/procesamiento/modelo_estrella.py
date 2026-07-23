@@ -135,6 +135,9 @@ def construir_fact_y_bridge(df, dims):
             sprom = None
         texto_tech = _valor_o_desconocido(fila.get("tecnologias"), default="")
         techs = [t.strip() for t in texto_tech.split("|") if t.strip()]
+        fpub = pd.to_datetime(fila.get("fecha"), errors="coerce")
+        fscr = pd.to_datetime(fila.get("fecha_scrape"), errors="coerce")
+        antiguedad = (fscr - fpub).days if pd.notna(fpub) and pd.notna(fscr) else None
         filas_fact.append({
             "id_oferta": i,
             "id_empresa": m_emp.get(_valor_o_desconocido(fila.get("empresa")), -1),
@@ -147,6 +150,7 @@ def construir_fact_y_bridge(df, dims):
             "salario_max": smax if pd.notna(smax) else None,
             "salario_promedio": sprom,
             "num_tecnologias": len(techs),
+            "antiguedad_dias": antiguedad,
             "titulo": fila.get("titulo"),
         })
         for t in techs:
