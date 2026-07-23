@@ -1,137 +1,410 @@
 id_oferta,id_empresa,id_ubicacion,id_fuente,id_fecha_scrape,id_fecha_publicacion,id_cluster,salario_min,salario_max,salario_promedio,num_tecnologias,titulo
-0,26,4,2,20260717,-1,1,,,,1,communication network maintenance engineer - chinese speaker
-1,40,5,2,20260717,-1,1,,,,1,auditor de sistemas
-2,22,11,2,20260717,-1,0,,,,4,analista de base de datos
+0,28,4,2,20260717,-1,1,,,,1,communication network maintenance engineer - chinese speaker
+1,42,5,2,20260717,-1,1,,,,1,auditor de sistemas
+2,23,13,2,20260717,-1,0,,,,4,analista de base de datos
 3,15,4,2,20260717,-1,0,,,,2,especialista de bi
-4,41,4,2,20260717,-1,1,,,,0,coordinador de help desk -temporal
-5,41,4,2,20260717,-1,1,,,,0,analista de soporte técnico-temporal
-6,15,8,2,20260717,-1,1,,,,0,dirección de it
-7,11,8,2,20260717,-1,0,,,,2,administrador de sistemas as400
-8,34,4,2,20260717,-1,1,,,,0,product owner
-9,2,6,2,20260717,-1,1,,,,0,"call center premium campaign - up to 1,050 usd"
-10,34,8,2,20260717,-1,1,,,,1,it business partner
+4,43,4,2,20260717,-1,1,,,,0,coordinador de help desk -temporal
+5,43,4,2,20260717,-1,1,,,,0,analista de soporte técnico-temporal
+6,15,9,2,20260717,-1,1,,,,0,dirección de it
+7,11,9,2,20260717,-1,0,,,,2,administrador de sistemas as400
+8,36,4,2,20260717,-1,1,,,,0,product owner
+9,2,7,2,20260717,-1,1,,,,0,"call center premium campaign - up to 1,050 usd"
+10,36,9,2,20260717,-1,1,,,,1,it business partner
 11,15,4,2,20260717,-1,1,,,,0,programador
-12,15,6,2,20260717,-1,1,,,,2,head of infrastructure & cloud operations
+12,15,7,2,20260717,-1,1,,,,2,head of infrastructure & cloud operations
 13,15,4,2,20260717,-1,1,,,,2,desarrollador y arquitecto de automatizaciones
-14,35,4,2,20260717,-1,0,,,,5,desarrollador full stack senior
-15,34,4,2,20260717,-1,1,,,,0,analista programador rpg
-16,24,4,2,20260717,-1,1,,,,0,coordinador de proyectos
-17,35,4,2,20260717,-1,0,,,,4,ingeniero de integración
-18,35,4,2,20260717,-1,1,,,,0,analista de telecomunicaciones
-19,11,8,2,20260717,-1,1,,,,0,soporte técnico
-20,11,8,2,20260717,-1,1,,,,0,asistente de control tecnológico
+14,37,4,2,20260717,-1,0,,,,5,desarrollador full stack senior
+15,36,4,2,20260717,-1,1,,,,0,analista programador rpg
+16,25,4,2,20260717,-1,1,,,,0,coordinador de proyectos
+17,37,4,2,20260717,-1,0,,,,4,ingeniero de integración
+18,37,4,2,20260717,-1,1,,,,0,analista de telecomunicaciones
+19,11,9,2,20260717,-1,1,,,,0,soporte técnico
+20,11,9,2,20260717,-1,1,,,,0,asistente de control tecnológico
 21,15,4,2,20260717,-1,1,,,,0,asesor técnico de servicos chapistería
-22,39,4,2,20260717,-1,0,,,,9,analista de métodos informáticos i - control de calidad e información
-23,15,8,2,20260717,-1,0,,,,3,analista de datos
-24,11,8,2,20260717,-1,1,,,,0,oficial de soporte tecnológico
-25,38,4,2,20260717,-1,1,,,,0,administrador de tms
+22,41,4,2,20260717,-1,0,,,,9,analista de métodos informáticos i - control de calidad e información
+23,15,9,2,20260717,-1,0,,,,3,analista de datos
+24,11,9,2,20260717,-1,1,,,,0,oficial de soporte tecnológico
+25,40,4,2,20260717,-1,1,,,,0,administrador de tms
 26,16,4,2,20260717,-1,1,,,,0,it support tier1
-27,35,4,2,20260717,-1,1,,,,1,product owner
+27,37,4,2,20260717,-1,1,,,,1,product owner
 28,4,4,2,20260717,-1,1,,,,4,analista de integraciones
-29,11,8,2,20260717,-1,1,,,,0,analista de proyectos crm
+29,11,9,2,20260717,-1,1,,,,0,analista de proyectos crm
 30,15,4,2,20260717,-1,0,,,,5,administrador de base de datos
-31,32,10,2,20260717,-1,1,,,,0,soporte técnico
+31,34,12,2,20260717,-1,1,,,,0,soporte técnico
 32,8,4,2,20260717,-1,0,,,,2,analista de sistemas
-33,1,8,2,20260717,-1,0,,,,9,senior devops engineer
-34,1,8,2,20260717,-1,0,,,,8,database administrator
-35,23,4,2,20260717,-1,1,,,,2,diseñador de producto
-36,15,8,2,20260717,-1,1,,,,0,analista soporte técnico
-37,15,8,2,20260717,-1,1,,,,0,analista mesa de servicio
+33,1,9,2,20260717,-1,0,,,,9,senior devops engineer
+34,1,9,2,20260717,-1,0,,,,8,database administrator
+35,24,4,2,20260717,-1,1,,,,2,diseñador de producto
+36,15,9,2,20260717,-1,1,,,,0,analista soporte técnico
+37,15,9,2,20260717,-1,1,,,,0,analista mesa de servicio
 38,12,4,2,20260717,-1,1,,,,1,soporte técnico
 39,12,4,2,20260717,-1,1,,,,1,analista de seguridad de la información
 40,15,4,2,20260717,-1,1,,,,0,it support specialist
 41,3,4,2,20260717,-1,1,,,,1,project management specialist (pmo it)
-42,15,8,2,20260717,-1,0,,,,4,analista senior de infraestructura y soporte ti
-43,17,8,2,20260717,-1,1,,,,0,analista de soporte y helpdesk
-44,15,6,2,20260717,-1,1,,,,0,líder de tecnología
-45,28,4,2,20260717,-1,1,,,,0,administrador de it
+42,15,9,2,20260717,-1,0,,,,4,analista senior de infraestructura y soporte ti
+43,17,9,2,20260717,-1,1,,,,0,analista de soporte y helpdesk
+44,15,7,2,20260717,-1,1,,,,0,líder de tecnología
+45,30,4,2,20260717,-1,1,,,,0,administrador de it
 46,9,4,2,20260717,-1,1,,,,0,auditor de sistemas
 47,13,4,2,20260717,-1,1,,,,0,analista de soporte técnico
-48,23,4,2,20260717,-1,0,,,,10,analista programador
+48,24,4,2,20260717,-1,0,,,,10,analista programador
 49,15,4,2,20260717,-1,1,,,,2,analista de data jr.
 50,15,4,2,20260717,-1,1,,,,0,operador de sistemas (ciudad de panamá)
 51,18,2,2,20260717,-1,1,,,,0,tecnico bilingue de helpdesk
 52,7,5,2,20260717,-1,1,,,,0,analista de prevención y control de fraudes
-53,30,4,2,20260717,-1,1,,,,3,analista de ciberseguridad
-54,29,1,2,20260717,-1,1,,,,0,lider tecnico
+53,32,4,2,20260717,-1,1,,,,3,analista de ciberseguridad
+54,31,1,2,20260717,-1,1,,,,0,lider tecnico
 55,3,4,2,20260717,-1,1,,,,2,oficial de tecnología senior
 56,10,4,2,20260717,-1,0,,,,4,especialista funcional oracle netsuite
 57,15,4,2,20260717,-1,1,,,,4,programador(a) web junior – e-commerce
-58,31,9,2,20260717,-1,0,,,,7,ingeniero de soluciones digitales
+58,33,11,2,20260717,-1,0,,,,7,ingeniero de soluciones digitales
 59,15,4,2,20260717,-1,1,,,,2,desarrollador jr.
 60,15,4,2,20260717,-1,0,,,,4,analista de datos
-61,43,8,2,20260717,-1,0,,,,9,"programador mobile con experiencia en flutter, c# y sql"
+61,45,9,2,20260717,-1,0,,,,9,"programador mobile con experiencia en flutter, c# y sql"
 62,6,4,2,20260717,-1,1,,,,0,analista ii programador
-63,23,4,2,20260717,-1,1,,,,2,desarrollador fullstack
-64,34,4,2,20260717,-1,1,,,,0,tecnico de monitoreo de sistemas bancarios
-65,11,8,2,20260717,-1,1,,,,0,analista de qa (canales digitales)
+63,24,4,2,20260717,-1,1,,,,2,desarrollador fullstack
+64,36,4,2,20260717,-1,1,,,,0,tecnico de monitoreo de sistemas bancarios
+65,11,9,2,20260717,-1,1,,,,0,analista de qa (canales digitales)
 66,15,4,2,20260717,-1,1,,,,0,oficial de auditoría en seguridad de sistemas
-67,39,4,2,20260717,-1,0,,,,9,analista de sistemas y métodos informáticos i - aplicaciones tecnológicas
+67,41,4,2,20260717,-1,0,,,,9,analista de sistemas y métodos informáticos i - aplicaciones tecnológicas
 68,7,4,2,20260717,-1,0,,,,6,data engineer
 69,7,4,2,20260717,-1,1,,,,1,data scientist
-70,15,6,2,20260717,-1,1,,,,4,jefe técnico senior
+70,15,7,2,20260717,-1,1,,,,4,jefe técnico senior
 71,20,4,2,20260717,-1,0,,,,3,líder de administración de base de datos
-72,21,4,2,20260717,-1,1,,,,0,project manager
+72,22,4,2,20260717,-1,1,,,,0,project manager
 73,15,4,2,20260717,-1,1,,,,1,líder de transformación digital e innovación
-74,27,5,2,20260717,-1,1,,,,0,it desktop tech
+74,29,5,2,20260717,-1,1,,,,0,it desktop tech
 75,15,1,2,20260717,-1,1,,,,0,supervisor de it
-76,33,4,2,20260717,-1,1,,,,0,cajero - provincia panamá
+76,35,4,2,20260717,-1,1,,,,0,cajero - provincia panamá
 77,7,4,2,20260717,-1,1,,,,6,devops analítica
-78,23,4,2,20260717,-1,1,,,,0,scrum master
+78,24,4,2,20260717,-1,1,,,,0,scrum master
 79,15,4,2,20260717,-1,1,,,,0,asistente de tecnología
-80,11,8,2,20260717,-1,1,,,,0,analista de seguridad tecnológica
+80,11,9,2,20260717,-1,1,,,,0,analista de seguridad tecnológica
 81,15,4,2,20260717,-1,0,,,,4,especialista de calidad (software)
 82,15,5,2,20260717,-1,0,,,,4,supervisor de gobierno de datos
-83,25,4,2,20260717,-1,1,,,,0,especialista en aplicaciones distribuidas
-84,36,4,2,20260717,-1,1,,,,0,project manager de implementación erp
-85,34,4,2,20260717,-1,1,,,,2,arquitecto cloud y de infraestructura
-86,15,8,2,20260717,-1,1,,,,0,gerente de proyectos (ciudad de panamá)
-87,34,4,2,20260717,-1,1,,,,0,qa tester junior
+83,26,4,2,20260717,-1,1,,,,0,especialista en aplicaciones distribuidas
+84,38,4,2,20260717,-1,1,,,,0,project manager de implementación erp
+85,36,4,2,20260717,-1,1,,,,2,arquitecto cloud y de infraestructura
+86,15,9,2,20260717,-1,1,,,,0,gerente de proyectos (ciudad de panamá)
+87,36,4,2,20260717,-1,1,,,,0,qa tester junior
 88,15,4,2,20260717,-1,1,,,,0,asistente de soporte tecnico
-89,29,4,2,20260717,-1,1,,,,0,"analista y consultores pruebas de calidad jr, sr y lider"
-90,42,3,2,20260717,-1,0,,,,9,programador senior
+89,31,4,2,20260717,-1,1,,,,0,"analista y consultores pruebas de calidad jr, sr y lider"
+90,44,3,2,20260717,-1,0,,,,9,programador senior
 91,7,5,2,20260717,-1,1,,,,7,administrador de devops
-92,35,4,2,20260717,-1,0,,,,9,arquitecto de soluciones
+92,37,4,2,20260717,-1,0,,,,9,arquitecto de soluciones
 93,15,4,2,20260717,-1,0,,,,5,"coordinador de tecnología, infraestructuras y erp"
-94,5,8,2,20260717,-1,1,,,,0,analista de datos
-95,14,10,2,20260717,-1,0,,,,2,científico de datos
-96,15,6,2,20260717,-1,0,,,,6,ingeniero en sistema
-97,37,4,2,20260717,-1,1,,,,5,desarrollador de flutter
-98,15,6,2,20260717,-1,1,,,,0,project manager
-99,19,7,1,20260717,-1,1,,,,0,diseñador grafico
-100,19,7,1,20260717,-1,1,,,,0,analista de sistemas
-101,19,7,1,20260717,-1,1,,,,0,analista de capacitación técnica
-102,19,7,1,20260717,-1,1,,,,0,analista de soporte técnico y operaciones it
-103,19,7,1,20260717,-1,1,,,,0,mecánico industrial
-104,19,7,1,20260717,-1,1,,,,0,jefe de operaciones maritimas
-105,19,7,1,20260717,-1,1,,,,0,asistente it
-106,19,7,1,20260717,-1,1,,,,0,analista ti
-107,19,7,1,20260717,-1,1,,,,0,soporte técnico
-108,19,7,1,20260717,-1,1,,,,0,recepcionista
-109,19,7,1,20260717,-1,1,,,,0,auditor de it
-110,19,7,1,20260717,-1,1,,,,0,vendedor de sistemas de seguridad electrónica
-111,19,7,1,20260717,-1,1,,,,0,asesor de servicio automotriz
-112,19,7,1,20260717,-1,1,,,,0,analista de soporte técnico y reporteria
-113,19,7,1,20260717,-1,1,,,,0,docente de informatica (bilingüe)
-114,19,7,1,20260717,-1,1,,,,0,"docente de filosofía, religión, ética y moral (bilingüe)"
-115,19,7,1,20260717,-1,1,,,,0,desarrollador jr.
-116,19,7,1,20260717,-1,1,,,,0,gerente de proyecto (project manager)
-117,19,7,1,20260717,-1,1,,,,0,auditor de sistemas ( externo)
-118,19,7,1,20260717,-1,1,,,,0,coordinador de proyecto
-119,19,7,1,20260717,-1,1,,,,0,analista de soporte – segundo nivel (noc)
-120,19,7,1,20260717,-1,1,,,,0,ingeniero de planta y mantenimiento naval
-121,19,7,1,20260717,-1,1,,,,0,vendedor encargado de marca
-122,19,7,1,20260717,-1,1,,,,0,recepcionista bilingue
-123,19,7,1,20260717,-1,1,,,,0,project manager it
-124,19,7,1,20260717,-1,1,,,,0,coordinador de proyectos it
-125,19,7,1,20260717,-1,1,,,,1,asistente de power bi
-126,19,7,1,20260717,-1,1,,,,0,healthcare information systems consultant
-127,19,7,1,20260717,-1,1,,,,0,docente de informática
-128,19,7,1,20260717,-1,1,,,,0,asistente de auditoría it y ciberseguridad
-129,19,7,1,20260717,-1,1,,,,0,docente de informática bilingüe
-130,19,7,1,20260717,-1,1,,,,0,analista de aseguramiento de calidad (qa tester)
-131,19,7,1,20260717,-1,1,,,,0,oficial de seguridad de la información
-132,19,7,1,20260717,-1,1,,,,0,operador de montacarga auxiliar de bodega
-133,19,7,1,20260717,-1,1,,,,0,it support / soporte it – proyecto marítimo internacional
-134,19,7,1,20260717,-1,1,,,,0,gerente de tecnologia (ti) – laboratorio farmaceutico
-135,19,7,1,20260717,-1,1,,,,0,auditor externo de it
+94,5,9,2,20260717,-1,1,,,,0,analista de datos
+95,14,12,2,20260717,-1,0,,,,2,científico de datos
+96,15,7,2,20260717,-1,0,,,,6,ingeniero en sistema
+97,39,4,2,20260717,-1,1,,,,5,desarrollador de flutter
+98,15,7,2,20260717,-1,1,,,,0,project manager
+99,19,8,1,20260717,-1,1,,,,0,diseñador grafico
+100,19,8,1,20260717,-1,1,,,,0,analista de sistemas
+101,19,8,1,20260717,-1,1,,,,0,analista de capacitación técnica
+102,19,8,1,20260717,-1,1,,,,0,analista de soporte técnico y operaciones it
+103,19,8,1,20260717,-1,1,,,,0,mecánico industrial
+104,19,8,1,20260717,-1,1,,,,0,jefe de operaciones maritimas
+105,19,8,1,20260717,-1,1,,,,0,asistente it
+106,19,8,1,20260717,-1,1,,,,0,analista ti
+107,19,8,1,20260717,-1,1,,,,0,soporte técnico
+108,19,8,1,20260717,-1,1,,,,0,recepcionista
+109,19,8,1,20260717,-1,1,,,,0,auditor de it
+110,19,8,1,20260717,-1,1,,,,0,vendedor de sistemas de seguridad electrónica
+111,19,8,1,20260717,-1,1,,,,0,asesor de servicio automotriz
+112,19,8,1,20260717,-1,1,,,,0,analista de soporte técnico y reporteria
+113,19,8,1,20260717,-1,1,,,,0,docente de informatica (bilingüe)
+114,19,8,1,20260717,-1,1,,,,0,"docente de filosofía, religión, ética y moral (bilingüe)"
+115,19,8,1,20260717,-1,1,,,,0,desarrollador jr.
+116,19,8,1,20260717,-1,1,,,,0,gerente de proyecto (project manager)
+117,19,8,1,20260717,-1,1,,,,0,auditor de sistemas ( externo)
+118,19,8,1,20260717,-1,1,,,,0,coordinador de proyecto
+119,19,8,1,20260717,-1,1,,,,0,analista de soporte – segundo nivel (noc)
+120,19,8,1,20260717,-1,1,,,,0,ingeniero de planta y mantenimiento naval
+121,19,8,1,20260717,-1,1,,,,0,vendedor encargado de marca
+122,19,8,1,20260717,-1,1,,,,0,recepcionista bilingue
+123,19,8,1,20260717,-1,1,,,,0,project manager it
+124,19,8,1,20260717,-1,1,,,,0,coordinador de proyectos it
+125,19,8,1,20260717,-1,1,,,,1,asistente de power bi
+126,19,8,1,20260717,-1,1,,,,0,healthcare information systems consultant
+127,19,8,1,20260717,-1,1,,,,0,docente de informática
+128,19,8,1,20260717,-1,1,,,,0,asistente de auditoría it y ciberseguridad
+129,19,8,1,20260717,-1,1,,,,0,docente de informática bilingüe
+130,19,8,1,20260717,-1,1,,,,0,analista de aseguramiento de calidad (qa tester)
+131,19,8,1,20260717,-1,1,,,,0,oficial de seguridad de la información
+132,19,8,1,20260717,-1,1,,,,0,operador de montacarga auxiliar de bodega
+133,19,8,1,20260717,-1,1,,,,0,it support / soporte it – proyecto marítimo internacional
+134,19,8,1,20260717,-1,1,,,,0,gerente de tecnologia (ti) – laboratorio farmaceutico
+135,19,8,1,20260717,-1,1,,,,0,auditor externo de it
+136,2,7,2,20260718,-1,1,,,,0,"call center premium campaign - up to 1,050 usd"
+137,28,4,2,20260718,-1,1,,,,1,communication network maintenance engineer - chinese speaker
+138,42,5,2,20260718,-1,1,,,,1,auditor de sistemas
+139,23,13,2,20260718,-1,0,,,,4,analista de base de datos
+140,15,4,2,20260718,-1,0,,,,2,especialista de bi
+141,21,6,2,20260718,-1,0,,,,3,analista de gestión
+142,15,9,2,20260718,-1,1,,,,0,dirección de it
+143,11,9,2,20260718,-1,0,,,,2,administrador de sistemas as400
+144,36,4,2,20260718,-1,1,,,,0,product owner
+145,36,9,2,20260718,-1,1,,,,1,it business partner
+146,15,4,2,20260718,-1,1,,,,0,programador
+147,15,7,2,20260718,-1,1,,,,2,head of infrastructure & cloud operations
+148,15,4,2,20260718,-1,1,,,,2,desarrollador y arquitecto de automatizaciones
+149,37,4,2,20260718,-1,0,,,,5,desarrollador full stack senior
+150,43,4,2,20260718,-1,1,,,,0,coordinador de help desk -temporal
+151,43,4,2,20260718,-1,1,,,,0,analista de soporte técnico-temporal
+152,36,4,2,20260718,-1,1,,,,0,analista programador rpg
+153,25,4,2,20260718,-1,1,,,,0,coordinador de proyectos
+154,37,4,2,20260718,-1,0,,,,4,ingeniero de integración
+155,11,9,2,20260718,-1,1,,,,0,soporte técnico
+156,11,9,2,20260718,-1,1,,,,0,asistente de control tecnológico
+157,15,4,2,20260718,-1,1,,,,0,asesor técnico de servicos chapistería
+158,41,4,2,20260718,-1,0,,,,9,analista de métodos informáticos i - control de calidad e información
+159,15,9,2,20260718,-1,0,,,,3,analista de datos
+160,11,9,2,20260718,-1,1,,,,0,oficial de soporte tecnológico
+161,40,4,2,20260718,-1,1,,,,0,administrador de tms
+162,16,4,2,20260718,-1,1,,,,0,it support tier1
+163,37,4,2,20260718,-1,1,,,,1,product owner
+164,4,4,2,20260718,-1,1,,,,4,analista de integraciones
+165,11,9,2,20260718,-1,1,,,,0,analista de proyectos crm
+166,15,4,2,20260718,-1,0,,,,5,administrador de base de datos
+167,34,12,2,20260718,-1,1,,,,0,soporte técnico
+168,8,4,2,20260718,-1,0,,,,2,analista de sistemas
+169,1,9,2,20260718,-1,0,,,,9,senior devops engineer
+170,1,9,2,20260718,-1,0,,,,8,database administrator
+171,24,4,2,20260718,-1,1,,,,2,diseñador de producto
+172,15,9,2,20260718,-1,1,,,,0,analista soporte técnico
+173,15,9,2,20260718,-1,1,,,,0,analista mesa de servicio
+174,12,4,2,20260718,-1,1,,,,1,soporte técnico
+175,12,4,2,20260718,-1,1,,,,1,analista de seguridad de la información
+176,15,4,2,20260718,-1,1,,,,0,it support specialist
+177,3,4,2,20260718,-1,1,,,,1,project management specialist (pmo it)
+178,15,9,2,20260718,-1,0,,,,4,analista senior de infraestructura y soporte ti
+179,17,9,2,20260718,-1,1,,,,0,analista de soporte y helpdesk
+180,15,7,2,20260718,-1,1,,,,0,líder de tecnología
+181,30,4,2,20260718,-1,1,,,,0,administrador de it
+182,9,4,2,20260718,-1,1,,,,0,auditor de sistemas
+183,13,4,2,20260718,-1,1,,,,0,analista de soporte técnico
+184,24,4,2,20260718,-1,0,,,,10,analista programador
+185,15,4,2,20260718,-1,1,,,,2,analista de data jr.
+186,15,4,2,20260718,-1,1,,,,0,operador de sistemas (ciudad de panamá)
+187,18,2,2,20260718,-1,1,,,,0,tecnico bilingue de helpdesk
+188,7,5,2,20260718,-1,1,,,,0,analista de prevención y control de fraudes
+189,32,4,2,20260718,-1,1,,,,3,analista de ciberseguridad
+190,31,1,2,20260718,-1,1,,,,0,lider tecnico
+191,3,4,2,20260718,-1,1,,,,2,oficial de tecnología senior
+192,10,4,2,20260718,-1,0,,,,4,especialista funcional oracle netsuite
+193,15,4,2,20260718,-1,1,,,,4,programador(a) web junior – e-commerce
+194,33,11,2,20260718,-1,0,,,,7,ingeniero de soluciones digitales
+195,15,4,2,20260718,-1,1,,,,2,desarrollador jr.
+196,15,4,2,20260718,-1,0,,,,4,analista de datos
+197,45,9,2,20260718,-1,0,,,,9,"programador mobile con experiencia en flutter, c# y sql"
+198,6,4,2,20260718,-1,1,,,,0,analista ii programador
+199,24,4,2,20260718,-1,1,,,,2,desarrollador fullstack
+200,36,4,2,20260718,-1,1,,,,0,tecnico de monitoreo de sistemas bancarios
+201,11,9,2,20260718,-1,1,,,,0,analista de qa (canales digitales)
+202,15,4,2,20260718,-1,1,,,,0,oficial de auditoría en seguridad de sistemas
+203,41,4,2,20260718,-1,0,,,,9,analista de sistemas y métodos informáticos i - aplicaciones tecnológicas
+204,7,4,2,20260718,-1,0,,,,6,data engineer
+205,7,4,2,20260718,-1,1,,,,1,data scientist
+206,15,7,2,20260718,-1,1,,,,4,jefe técnico senior
+207,20,4,2,20260718,-1,0,,,,3,líder de administración de base de datos
+208,22,4,2,20260718,-1,1,,,,0,project manager
+209,15,4,2,20260718,-1,1,,,,1,líder de transformación digital e innovación
+210,29,5,2,20260718,-1,1,,,,0,it desktop tech
+211,15,1,2,20260718,-1,1,,,,0,supervisor de it
+212,35,4,2,20260718,-1,1,,,,0,cajero - provincia panamá
+213,7,4,2,20260718,-1,0,,,,6,devops analítica
+214,24,4,2,20260718,-1,1,,,,0,scrum master
+215,15,4,2,20260718,-1,1,,,,0,asistente de tecnología
+216,11,9,2,20260718,-1,1,,,,0,analista de seguridad tecnológica
+217,15,4,2,20260718,-1,0,,,,4,especialista de calidad (software)
+218,15,5,2,20260718,-1,0,,,,4,supervisor de gobierno de datos
+219,26,4,2,20260718,-1,1,,,,0,especialista en aplicaciones distribuidas
+220,38,4,2,20260718,-1,1,,,,0,project manager de implementación erp
+221,36,4,2,20260718,-1,1,,,,2,arquitecto cloud y de infraestructura
+222,15,9,2,20260718,-1,1,,,,0,gerente de proyectos (ciudad de panamá)
+223,36,4,2,20260718,-1,1,,,,0,qa tester junior
+224,15,4,2,20260718,-1,1,,,,0,asistente de soporte tecnico
+225,31,4,2,20260718,-1,1,,,,0,"analista y consultores pruebas de calidad jr, sr y lider"
+226,44,3,2,20260718,-1,0,,,,9,programador senior
+227,7,5,2,20260718,-1,0,,,,7,administrador de devops
+228,37,4,2,20260718,-1,0,,,,9,arquitecto de soluciones
+229,15,4,2,20260718,-1,0,,,,5,"coordinador de tecnología, infraestructuras y erp"
+230,5,9,2,20260718,-1,1,,,,0,analista de datos
+231,14,12,2,20260718,-1,0,,,,2,científico de datos
+232,15,7,2,20260718,-1,0,,,,6,ingeniero en sistema
+233,39,4,2,20260718,-1,1,,,,5,desarrollador de flutter
+234,19,8,1,20260718,-1,1,,,,0,mecánico industrial
+235,19,8,1,20260718,-1,1,,,,0,auditor de it
+236,19,8,1,20260718,-1,1,,,,0,asistente de operaciones – laboratorio óptico
+237,19,8,1,20260718,-1,1,,,,0,diseñador grafico
+238,19,8,1,20260718,-1,1,,,,0,analista de sistemas
+239,19,8,1,20260718,-1,1,,,,0,analista de capacitación técnica
+240,19,8,1,20260718,-1,1,,,,0,analista de soporte técnico y operaciones it
+241,19,8,1,20260718,-1,1,,,,0,jefe de operaciones maritimas
+242,19,8,1,20260718,-1,1,,,,0,asistente it
+243,19,8,1,20260718,-1,1,,,,0,analista ti
+244,19,8,1,20260718,-1,1,,,,0,soporte técnico
+245,19,8,1,20260718,-1,1,,,,0,recepcionista
+246,19,8,1,20260718,-1,1,,,,0,auditor de it
+247,19,8,1,20260718,-1,1,,,,0,vendedor de sistemas de seguridad electrónica
+248,19,8,1,20260718,-1,1,,,,0,asesor de servicio automotriz
+249,19,8,1,20260718,-1,1,,,,0,analista de soporte técnico y reporteria
+250,19,8,1,20260718,-1,1,,,,0,docente de informatica (bilingüe)
+251,19,8,1,20260718,-1,1,,,,0,"docente de filosofía, religión, ética y moral (bilingüe)"
+252,19,8,1,20260718,-1,1,,,,0,desarrollador jr.
+253,19,8,1,20260718,-1,1,,,,0,gerente de proyecto (project manager)
+254,19,8,1,20260718,-1,1,,,,0,auditor de sistemas ( externo)
+255,19,8,1,20260718,-1,1,,,,0,coordinador de proyecto
+256,19,8,1,20260718,-1,1,,,,0,analista de soporte – segundo nivel (noc)
+257,19,8,1,20260718,-1,1,,,,0,ingeniero de planta y mantenimiento naval
+258,19,8,1,20260718,-1,1,,,,0,vendedor encargado de marca
+259,19,8,1,20260718,-1,1,,,,0,recepcionista bilingue
+260,19,8,1,20260718,-1,1,,,,0,project manager it
+261,19,8,1,20260718,-1,1,,,,0,coordinador de proyectos it
+262,19,8,1,20260718,-1,1,,,,1,asistente de power bi
+263,19,8,1,20260718,-1,1,,,,0,healthcare information systems consultant
+264,19,8,1,20260718,-1,1,,,,0,docente de informática
+265,19,8,1,20260718,-1,1,,,,0,asistente de auditoría it y ciberseguridad
+266,19,8,1,20260718,-1,1,,,,0,docente de informática bilingüe
+267,19,8,1,20260718,-1,1,,,,0,analista de aseguramiento de calidad (qa tester)
+268,19,8,1,20260718,-1,1,,,,0,oficial de seguridad de la información
+269,19,8,1,20260718,-1,1,,,,0,operador de montacarga auxiliar de bodega
+270,19,8,1,20260718,-1,1,,,,0,it support / soporte it – proyecto marítimo internacional
+271,19,8,1,20260718,-1,1,,,,0,gerente de tecnologia (ti) – laboratorio farmaceutico
+272,17,9,2,20260723,-1,1,,,,8,desarrollador de integraciones
+273,15,9,2,20260723,-1,0,,,,0,analista senior de infraestructura y soporte ti
+274,15,10,2,20260723,-1,0,,,,3,cloud sysops / administrador de sistemas en la nube
+275,32,9,2,20260723,-1,1,,,,3,analista de business intelligence – administración de cartera.
+276,2,7,2,20260723,-1,0,,,,0,"call center premium campaign - up to 1,050 usd"
+277,28,4,2,20260723,-1,0,,,,1,communication network maintenance engineer - chinese speaker
+278,42,5,2,20260723,-1,0,,,,1,auditor de sistemas
+279,20,4,2,20260723,-1,0,,,,1,administrador de servidores
+280,27,9,2,20260723,-1,0,,,,0,soporte técnico
+281,37,4,2,20260723,-1,0,,,,5,administrador de hosting y ciberseguridad
+282,21,6,2,20260723,-1,1,,,,3,analista de gestión
+283,23,13,2,20260723,-1,1,,,,4,analista de base de datos
+284,15,9,2,20260723,-1,0,,,,0,dirección de it
+285,11,9,2,20260723,-1,1,,,,2,administrador de sistemas as400
+286,36,4,2,20260723,-1,0,,,,0,product owner
+287,15,4,2,20260723,-1,1,,,,2,especialista de bi
+288,36,9,2,20260723,-1,0,,,,1,it business partner
+289,15,4,2,20260723,-1,0,,,,0,programador
+290,15,7,2,20260723,-1,0,,,,2,head of infrastructure & cloud operations
+291,15,4,2,20260723,-1,0,,,,2,desarrollador y arquitecto de automatizaciones
+292,37,4,2,20260723,-1,1,,,,5,desarrollador full stack senior
+293,43,4,2,20260723,-1,0,,,,0,coordinador de help desk -temporal
+294,43,4,2,20260723,-1,0,,,,0,analista de soporte técnico-temporal
+295,36,4,2,20260723,-1,0,,,,0,analista programador rpg
+296,25,4,2,20260723,-1,0,,,,0,coordinador de proyectos
+297,37,4,2,20260723,-1,1,,,,4,ingeniero de integración
+298,11,9,2,20260723,-1,0,,,,0,soporte técnico
+299,11,9,2,20260723,-1,0,,,,0,asistente de control tecnológico
+300,15,4,2,20260723,-1,0,,,,0,asesor técnico de servicos chapistería
+301,41,4,2,20260723,-1,1,,,,9,analista de métodos informáticos i - control de calidad e información
+302,15,9,2,20260723,-1,1,,,,3,analista de datos
+303,11,9,2,20260723,-1,0,,,,0,oficial de soporte tecnológico
+304,40,4,2,20260723,-1,0,,,,0,administrador de tms
+305,16,4,2,20260723,-1,0,,,,0,it support tier1
+306,37,4,2,20260723,-1,0,,,,1,product owner
+307,4,4,2,20260723,-1,0,,,,4,analista de integraciones
+308,11,9,2,20260723,-1,0,,,,0,analista de proyectos crm
+309,15,4,2,20260723,-1,1,,,,5,administrador de base de datos
+310,34,12,2,20260723,-1,0,,,,0,soporte técnico
+311,8,4,2,20260723,-1,1,,,,2,analista de sistemas
+312,1,9,2,20260723,-1,1,,,,9,senior devops engineer
+313,1,9,2,20260723,-1,1,,,,8,database administrator
+314,24,4,2,20260723,-1,0,,,,2,diseñador de producto
+315,15,9,2,20260723,-1,0,,,,0,analista soporte técnico
+316,15,9,2,20260723,-1,0,,,,0,analista mesa de servicio
+317,12,4,2,20260723,-1,0,,,,1,soporte técnico
+318,12,4,2,20260723,-1,0,,,,1,analista de seguridad de la información
+319,15,4,2,20260723,-1,0,,,,0,it support specialist
+320,3,4,2,20260723,-1,0,,,,1,project management specialist (pmo it)
+321,17,9,2,20260723,-1,0,,,,0,analista de soporte y helpdesk
+322,15,7,2,20260723,-1,0,,,,0,líder de tecnología
+323,30,4,2,20260723,-1,0,,,,0,administrador de it
+324,9,4,2,20260723,-1,0,,,,0,auditor de sistemas
+325,13,4,2,20260723,-1,0,,,,0,analista de soporte técnico
+326,24,4,2,20260723,-1,1,,,,10,analista programador
+327,15,4,2,20260723,-1,0,,,,2,analista de data jr.
+328,15,4,2,20260723,-1,0,,,,0,operador de sistemas (ciudad de panamá)
+329,18,2,2,20260723,-1,0,,,,0,tecnico bilingue de helpdesk
+330,7,5,2,20260723,-1,0,,,,0,analista de prevención y control de fraudes
+331,32,4,2,20260723,-1,0,,,,3,analista de ciberseguridad
+332,31,1,2,20260723,-1,0,,,,0,lider tecnico
+333,3,4,2,20260723,-1,0,,,,2,oficial de tecnología senior
+334,10,4,2,20260723,-1,1,,,,4,especialista funcional oracle netsuite
+335,15,4,2,20260723,-1,0,,,,4,programador(a) web junior – e-commerce
+336,33,11,2,20260723,-1,1,,,,7,ingeniero de soluciones digitales
+337,15,4,2,20260723,-1,0,,,,2,desarrollador jr.
+338,15,4,2,20260723,-1,1,,,,4,analista de datos
+339,45,9,2,20260723,-1,1,,,,9,"programador mobile con experiencia en flutter, c# y sql"
+340,6,4,2,20260723,-1,0,,,,0,analista ii programador
+341,24,4,2,20260723,-1,0,,,,2,desarrollador fullstack
+342,36,4,2,20260723,-1,0,,,,0,tecnico de monitoreo de sistemas bancarios
+343,11,9,2,20260723,-1,0,,,,0,analista de qa (canales digitales)
+344,15,4,2,20260723,-1,0,,,,0,oficial de auditoría en seguridad de sistemas
+345,41,4,2,20260723,-1,1,,,,9,analista de sistemas y métodos informáticos i - aplicaciones tecnológicas
+346,7,4,2,20260723,-1,1,,,,6,data engineer
+347,7,4,2,20260723,-1,0,,,,1,data scientist
+348,15,7,2,20260723,-1,0,,,,4,jefe técnico senior
+349,20,4,2,20260723,-1,1,,,,3,líder de administración de base de datos
+350,22,4,2,20260723,-1,0,,,,0,project manager
+351,15,4,2,20260723,-1,0,,,,1,líder de transformación digital e innovación
+352,29,5,2,20260723,-1,0,,,,0,it desktop tech
+353,15,1,2,20260723,-1,0,,,,0,supervisor de it
+354,35,4,2,20260723,-1,0,,,,0,cajero - provincia panamá
+355,7,4,2,20260723,-1,0,,,,6,devops analítica
+356,24,4,2,20260723,-1,0,,,,0,scrum master
+357,15,4,2,20260723,-1,0,,,,0,asistente de tecnología
+358,11,9,2,20260723,-1,0,,,,0,analista de seguridad tecnológica
+359,15,4,2,20260723,-1,1,,,,4,especialista de calidad (software)
+360,15,5,2,20260723,-1,1,,,,4,supervisor de gobierno de datos
+361,26,4,2,20260723,-1,0,,,,0,especialista en aplicaciones distribuidas
+362,38,4,2,20260723,-1,0,,,,0,project manager de implementación erp
+363,36,4,2,20260723,-1,0,,,,2,arquitecto cloud y de infraestructura
+364,15,9,2,20260723,-1,0,,,,0,gerente de proyectos (ciudad de panamá)
+365,36,4,2,20260723,-1,0,,,,0,qa tester junior
+366,15,4,2,20260723,-1,0,,,,0,asistente de soporte tecnico
+367,31,4,2,20260723,-1,0,,,,0,"analista y consultores pruebas de calidad jr, sr y lider"
+368,44,3,2,20260723,-1,1,,,,9,programador senior
+369,7,5,2,20260723,-1,0,,,,7,administrador de devops
+370,19,8,1,20260723,-1,0,,,,0,auditor externo de it
+371,19,8,1,20260723,-1,0,,,,0,auxiliar contable
+372,19,8,1,20260723,-1,0,,,,0,captador/a
+373,19,8,1,20260723,-1,0,,,,0,asistente académico
+374,19,8,1,20260723,-1,0,,,,0,auditor de sistemas ( externo)
+375,19,8,1,20260723,-1,0,,,,0,oficial de gobierno y proteccion de datos
+376,19,8,1,20260723,-1,0,,,,0,"docente de filosofía, religión, ética y moral (bilingüe)"
+377,19,8,1,20260723,-1,0,,,,0,ingeniero electromecánico
+378,19,8,1,20260723,-1,0,,,,0,mecánico industrial
+379,19,8,1,20260723,-1,0,,,,0,auditor de it
+380,19,8,1,20260723,-1,0,,,,0,asistente de operaciones – laboratorio óptico
+381,19,8,1,20260723,-1,0,,,,0,diseñador grafico
+382,19,8,1,20260723,-1,0,,,,0,analista de sistemas
+383,19,8,1,20260723,-1,0,,,,0,analista de capacitación técnica
+384,19,8,1,20260723,-1,0,,,,0,analista de soporte técnico y operaciones it
+385,19,8,1,20260723,-1,0,,,,0,jefe de operaciones maritimas
+386,19,8,1,20260723,-1,0,,,,0,asistente it
+387,19,8,1,20260723,-1,0,,,,0,analista ti
+388,19,8,1,20260723,-1,0,,,,0,recepcionista
+389,19,8,1,20260723,-1,0,,,,0,vendedor de sistemas de seguridad electrónica
+390,19,8,1,20260723,-1,0,,,,0,asesor de servicio automotriz
+391,19,8,1,20260723,-1,0,,,,0,auditor de it
+392,19,8,1,20260723,-1,0,,,,0,analista de soporte técnico y reporteria
+393,19,8,1,20260723,-1,0,,,,0,docente de informatica (bilingüe)
+394,19,8,1,20260723,-1,0,,,,0,desarrollador jr.
+395,19,8,1,20260723,-1,0,,,,0,gerente de proyecto (project manager)
+396,19,8,1,20260723,-1,0,,,,0,coordinador de proyecto
+397,19,8,1,20260723,-1,0,,,,0,analista de soporte – segundo nivel (noc)
+398,19,8,1,20260723,-1,0,,,,0,ingeniero de planta y mantenimiento naval
+399,19,8,1,20260723,-1,0,,,,0,vendedor encargado de marca
+400,19,8,1,20260723,-1,0,,,,0,recepcionista bilingue
+401,19,8,1,20260723,-1,0,,,,0,project manager it
+402,19,8,1,20260723,-1,0,,,,0,coordinador de proyectos it
+403,19,8,1,20260723,-1,0,,,,1,asistente de power bi
+404,19,8,1,20260723,-1,0,,,,0,healthcare information systems consultant
+405,19,8,1,20260723,-1,0,,,,0,docente de informática
+406,19,8,1,20260723,-1,0,,,,0,asistente de auditoría it y ciberseguridad
+407,19,8,1,20260723,-1,0,,,,0,docente de informática bilingüe
+408,19,8,1,20260723,-1,0,,,,0,analista de aseguramiento de calidad (qa tester)
