@@ -33,6 +33,21 @@ Salario Promedio = AVERAGE(fact_ofertas[salario_promedio])
 Tecnologías Únicas = DISTINCTCOUNT(bridge_oferta_tecnologia[id_tecnologia])
 ```
 
+### KPIs adicionales
+```
+Salario Mediano = MEDIAN(fact_ofertas[salario_promedio])
+Empresas Únicas = DISTINCTCOUNT(fact_ofertas[id_empresa])
+% Ofertas con Salario Informado = DIVIDE(
+    CALCULATE(COUNTROWS(fact_ofertas), NOT ISBLANK(fact_ofertas[salario_promedio])),
+    [Total Ofertas]
+)
+Promedio Tecnologías por Oferta = AVERAGE(fact_ofertas[num_tecnologias])
+Antigüedad Promedio (días) = AVERAGE(fact_ofertas[antiguedad_dias])
+```
+- *Salario Mediano* complementa el promedio: es menos sensible a salarios atípicos muy altos o bajos.
+- *% Ofertas con Salario Informado* mide cuánta confianza dar al KPI de salario (si la fuente casi no publica salario, el promedio pesa menos).
+- *Antigüedad Promedio* usa la nueva columna `antiguedad_dias` de `fact_ofertas` (días entre `fecha` de publicación y `fecha_scrape`); queda en blanco si falta alguna de las dos fechas.
+
 ## 5. Visualizaciones sugeridas
 - Barras: top tecnologías (dim_tecnologia + conteo del bridge).
 - Líneas: ofertas por mes (dim_fecha[nombre_mes] y dim_fecha[anio]) → tendencia temporal.

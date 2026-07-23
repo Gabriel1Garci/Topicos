@@ -100,6 +100,17 @@ def test_fact_salario_promedio():
     fila0 = fact[fact["id_oferta"] == 0].iloc[0]
     assert fila0["salario_promedio"] == 1500.0  # (1000+2000)/2
 
+def test_fact_antiguedad_dias():
+    df = df_muestra()
+    fact, _ = construir_fact_y_bridge(df, _dims(df))
+    # fila 0: fecha 2026-05-10, fecha_scrape 2026-07-16 → 67 días
+    fila0 = fact[fact["id_oferta"] == 0].iloc[0]
+    assert fila0["antiguedad_dias"] == 67
+    # fila 1: fecha nula → antigüedad desconocida
+    fila1 = fact[fact["id_oferta"] == 1].iloc[0]
+    assert pd.isna(fila1["antiguedad_dias"])
+
+
 def test_bridge_cubre_tecnologias():
     df = df_muestra()
     dims = _dims(df)
