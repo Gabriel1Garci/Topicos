@@ -239,3 +239,117 @@ varias, una tecnología está en varias).
 **¿Dónde está el LLM?**
 Narrativa inteligente en Power BI + asistente con Ollama (LLM local) en el dashboard
 de Streamlit.
+
+---
+
+## 10. Preguntas reales que hizo el profesor (a otro salón)
+
+Estas las preguntó de verdad. Estúdialas bien.
+
+### ¿Qué es normalización?
+
+**En sencillo:** organizar los datos para **no repetir información** y evitar errores.
+
+**Técnico, y cómo aplica al proyecto:** normalizar es separar los datos en tablas de
+modo que cada dato se guarde **una sola vez**. En nuestro proyecto la normalización
+está en el **modelo estrella**: en vez de repetir el nombre de una empresa en cada
+oferta, lo guardamos una vez en `dim_empresa` y la tabla de hechos solo apunta a ella
+con un número (la clave). Lo mismo con ubicaciones, fuentes y tecnologías.
+
+> **Ojo — matiz importante para no contradecirte:** el modelo estrella normaliza las
+> dimensiones (no repetir textos), pero **a propósito NO se normaliza al 100%**. Un
+> modelo totalmente normalizado (3ª forma normal, como una base transaccional) haría
+> las consultas de BI más lentas. La estrella busca el equilibrio: dimensiones
+> normalizadas + una tabla de hechos central. A eso se le llama **modelo
+> dimensional**, no una base normalizada pura. Si te preguntan, esa distinción suma.
+
+También hubo **normalización de texto** en la limpieza: pasar todo a minúsculas,
+quitar espacios y HTML sobrante, para que "Python", "python " y "PYTHON" cuenten como
+lo mismo.
+
+### ¿Por qué la estrella? (por qué modelo estrella)
+
+Tres razones:
+1. **No repite datos** (normalización de dimensiones) → menos espacio, menos errores.
+2. **Consultas rápidas** → Power BI está optimizado para este modelo; una sola tabla
+   gigante o un modelo muy fragmentado serían más lentos.
+3. **Cada dimensión es un filtro** → al hacer clic en un portal o una tecnología, todo
+   el dashboard se filtra solo, gracias a las relaciones de la estrella.
+
+Es el estándar de la industria para Business Intelligence.
+
+### ¿Dónde se cargan los datos?
+
+Dos niveles, según a qué se refiera:
+
+**En Power BI:** `Inicio` → `Obtener datos` → `Texto/CSV`, importando los 8 archivos
+de la carpeta `data/powerbi/`. Se cargan por el **Editor de Power Query**, donde se
+revisan los tipos de dato, y con `Cerrar y aplicar` entran al modelo.
+
+**En el pipeline (Python):** los datos fluyen por carpetas:
+`data/raw/` (crudo de los scrapers) → `data/processed/` (limpio y unificado) →
+`data/powerbi/` (los 8 CSV del modelo estrella). El script `run_pipeline.py` orquesta
+todo el flujo.
+
+### ¿Qué datos usa el Power BI?
+
+Los **8 archivos CSV** del modelo estrella (carpeta `data/powerbi/`):
+- 1 tabla de hechos: `fact_ofertas` (409 registros = 148 ofertas × 3 capturas)
+- 6 dimensiones: `dim_empresa`, `dim_ubicacion`, `dim_fuente`, `dim_fecha`,
+  `dim_tecnologia`, `dim_cluster`
+- 1 tabla puente: `bridge_oferta_tecnologia`
+
+Esos CSV los generó el pipeline de Python a partir de las ofertas scrapeadas. Power BI
+**no se conecta a internet ni a los portales** — trabaja sobre esos CSV ya procesados.
+
+### Preguntas sobre las fórmulas del Power BI (DAX)
+
+El profesor pregunta por las **medidas**. Esto es lo que tienes y qué hace cada una:
+
+**La mayoría de indicadores NO son fórmulas escritas**, son **agregaciones**: arrastras
+un campo y eliges cómo se resume. Por ejemplo:
+- `Ofertas Únicas` = **Recuento distinto** de `Clave Oferta` → cuenta ofertas sin
+  repetir (da 148).
+- `Empresas Contratando` = **Recuento distinto** de `id_empresa`.
+- `Prom. Tecnologías por Oferta` = **Promedio** de `num_tecnologias`.
+- `% con Tecnología Detectada` = **Promedio** de `tiene_tecnologia` (una columna 0/1).
+
+**Fórmulas DAX escritas (2 en total):**
+
+1. **`% del Total`** (participación de cada tecnología):
+   ```
+   % del Total = DIVIDE(
+       COUNTROWS(bridge_oferta_tecnologia),
+       CALCULATE(COUNTROWS(bridge_oferta_tecnologia), ALL(dim_tecnologia))
+   )
+   ```
+   - `COUNTROWS(bridge...)` = cuántas veces se pide esta tecnología.
+   - `CALCULATE(..., ALL(dim_tecnologia))` = el total de todas las tecnologías
+     (el `ALL` quita el filtro para tener el total general).
+   - `DIVIDE` = la proporción. Así "sql" pasa de "77 menciones" a "12.5% de la demanda".
+
+2. **`Concentración Top 5 Empresas`** (qué tan concentrado está el mercado):
+   ```
+   Concentración Top 5 Empresas =
+   VAR Top5 = TOPN(5, VALUES(dim_empresa[nombre_empresa]), [Ofertas por Empresa], DESC)
+   VAR OfertasTop5 = SUMX(Top5, CALCULATE(DISTINCTCOUNT(fact_ofertas[Clave Oferta])))
+   VAR OfertasTotales = CALCULATE(DISTINCTCOUNT(fact_ofertas[Clave Oferta]), ALL(dim_empresa))
+   RETURN DIVIDE(OfertasTop5, OfertasTotales)
+   ```
+   - `TOPN(5, ...)` = toma las 5 empresas que más publican.
+   - `SUMX` = suma las ofertas de esas 5.
+   - `ALL(dim_empresa)` = el total ignorando el filtro de empresa.
+   - `DIVIDE` = qué porcentaje del mercado concentran las 5 grandes.
+
+**Conceptos DAX que conviene nombrar:**
+- **Medida vs columna calculada:** una *columna* se calcula fila por fila y se guarda
+  (ej. `Clave Oferta`); una *medida* se calcula al vuelo según los filtros del visual
+  (ej. `% del Total`).
+- **`CALCULATE`** = la función clave de DAX: cambia el contexto de filtro de un cálculo.
+- **`ALL`** = quita filtros (se usa para obtener totales).
+- **Contexto de filtro** = los filtros que afectan a una medida en un momento dado
+  (segmentadores, la fila de una tabla, etc.).
+
+> Si te preguntan "¿por qué esta medida y no una agregación simple?": porque rankear
+> (TOPN) o calcular un porcentaje-sobre-el-total-ignorando-el-filtro no se puede hacer
+> arrastrando; necesita DAX. Por eso solo esas dos son fórmulas y el resto son botones.
