@@ -648,10 +648,19 @@ Las casillas de este visual en tu versión se llaman `Eje X`, `Eje Y de columna`
 `Eje Y de línea` y `Leyenda de columna`. Colócalos así:
 
 - **`Eje X`**: `dim_fecha[fecha]`
-  > ⚠️ Al marcar `fecha`, Power BI mete una **jerarquía de fechas** entera
-  > (`fecha`, `Año`, `Trimestre`, `Mes`, `Día`) en el `Eje X`. **Quita las 4 de
-  > más:** clic en la **`X`** junto a `Año`, `Trimestre`, `Mes` y `Día`, dejando
-  > solo `fecha`.
+  > ⚠️ **La fecha entra como "jerarquía" (Año/Trimestre/Mes/Día) y se vuelve a
+  > meter sola.** Para matarlo de raíz, desactiva la función una vez:
+  >
+  > 1. Vacía el `Eje X`: clic en la **`X`** de cada pila hasta dejarlo vacío
+  > 2. `Archivo` → `Opciones y configuración` → `Opciones`
+  > 3. Columna izquierda → sección **`ARCHIVO ACTUAL`** → **`Carga de datos`**
+  > 4. **Desmarca** la casilla **`Autofecha e inteligencia de tiempo`**
+  > 5. `Aceptar`
+  > 6. Arrastra `dim_fecha[fecha]` al `Eje X` de nuevo → entra como un solo campo,
+  >    sin jerarquía
+  >
+  > Es un ajuste global e inofensivo: solo evita que Power BI cree jerarquías de
+  > fecha automáticas.
 - **`Eje Y de columna`**: `fact_ofertas[Clave Oferta]` → con la `>`, `Resumen` =
   `Recuento distinto`
 - **`Eje Y de línea`**: `bridge_oferta_tecnologia[id_tecnologia]` → `Resumen` =
@@ -669,34 +678,42 @@ Las casillas de este visual en tu versión se llaman `Eje X`, `Eje Y de columna`
 **Para qué sirve:** el visual B es el germen del análisis de **skills emergentes**.
 Se lee de izquierda a derecha qué tecnología ganó o perdió presencia entre capturas.
 
-## Paso 32 — Visual de Preguntas y respuestas
+## Paso 32 — Visual de Preguntas y respuestas (OPCIONAL — puedes saltarlo)
 
-`Insertar` → `Preguntas y respuestas`.
+> ⚠️ **Este paso es opcional.** El requisito de LLM ya queda cubierto con la
+> `Narrativa inteligente` (paso 33) y la pestaña `Asistente IA` de Streamlit. Si el
+> visual no aparece en tu instalación, **sáltate este paso y ve al 33** sin
+> problema. No pierdas tiempo peleando con él.
 
-Escribes una pregunta en lenguaje natural y devuelve una visualización. Prueba:
-- `cuántas ofertas por fuente`
-- `top 5 empresas`
-- `recuento de id_tecnologia por categoria`
+Si quieres incluirlo, el visual está en el panel `Compilar`, en la cuadrícula de
+iconos — pasa el mouse hasta el que diga **`Preguntas y respuestas`** / **`P&R`**
+(bocadillo con signo de interrogación). En algunas instalaciones la organización lo
+tiene deshabilitado y no aparece; en ese caso, sáltalo.
 
-**Entrénalo:** `Modelado` → `Preguntas y respuestas` →
-`Configuración de preguntas y respuestas` → pestaña `Sinónimos`:
-
-| Campo | Sinónimos |
-|---|---|
-| `dim_tecnologia[tecnologia]` | `skill`, `habilidad`, `herramienta` |
-| `dim_empresa[nombre_empresa]` | `compañía`, `contratante`, `empleador` |
-| `fact_ofertas` | `vacantes`, `puestos`, `empleos` |
-| `dim_cluster[nombre_perfil]` | `perfil`, `familia de puestos` |
-
-Deja una pregunta ya escrita en el visual para la presentación.
+Si lo insertas, escribe preguntas como `cuántas ofertas por fuente` o
+`recuento de id_tecnologia por categoria`, y deja una escrita para la presentación.
 
 ## Paso 33 — Narrativa inteligente
 
-`Insertar` → `Narrativa inteligente`.
+Está en la pestaña **`Insertar`**, grupo **`Objetos visuales de IA`** (hacia el
+centro de la cinta). Ahí hay tres botones: `Elementos influyentes clave`,
+`Esquema jerárquico` y **`Narrativa`**. Clic en **`Narrativa`**.
 
-Genera un párrafo en lenguaje natural describiendo los datos de la página, y se
-actualiza al mover los filtros. Para añadir valores dinámicos: clic dentro del texto
-→ botón `+ Valor` → escribe una pregunta → `Guardar`.
+Espera unos segundos. **Power BI escribe solo un párrafo de resumen** tipo:
+*"Recuento de id_tecnologia tuvo tendencia hacia abajo (5.26% disminución) mientras
+que Recuento de Clave Oferta se mantuvo constante entre julio 17 y julio 23, 2026."*
+
+**Ese texto automático ES el resultado — no tienes que escribir nada.** Es la
+generación de lenguaje natural (el LLM de Power BI) resumiendo tus datos. Se
+actualiza solo al mover los filtros.
+
+Acabado (opcional):
+- Si aparece un `[%]` gris debajo (marcador de valor vacío), selecciónalo dentro del
+  texto y bórralo con `Suprimir`.
+- Arrastra la caja a un espacio libre y ciérrala haciendo clic en un área vacía.
+
+> **Con esto queda cubierto el requisito de LLM en Power BI.** Sumado a la pestaña
+> `Asistente IA` de Streamlit (Ollama local), el punto 5 del enunciado está completo.
 
 > **Con los pasos 32 y 33 cubres el requisito de LLM dentro de Power BI.** Y en el
 > proyecto Python está la pestaña `Asistente IA` de Streamlit, que usa **Ollama con
@@ -708,20 +725,38 @@ actualiza al mover los filtros. Para añadir valores dinámicos: clic dentro del
 
 ## Paso 34 — Formato, interacciones y navegación
 
-**34.1 Tema.** `Vista` → `Temas` → elige uno (p. ej. `Innovar`).
+**34.1 Aplicar el tema (el gran atajo).** Da estilo a **todos los visuales de las 4
+páginas de una vez**: fondo blanco, esquinas redondeadas, sombra, títulos en negrita
+y tarjetas azules.
+1. Pestaña `Ver` → `Temas` → desplegar → **`Buscar temas`**
+2. Abre `docs/tema_mercado_it.json` (está en el repo)
+3. Al instante cambia el aspecto de todo el reporte
 
-**34.2 Títulos.** En cada página, `Insertar` → `Cuadro de texto` con el título
-arriba a la izquierda.
+> Si el archivo no importa (versión antigua), usa un tema de la galería:
+> `Ver` → `Temas` → `Innovar` o `Ejecutivo`.
 
-**34.3 Interacciones.** Selecciona un visual → pestaña `Formato` →
+**34.2 Fondo de página.** En cada una de las 4 páginas: clic en área vacía del
+lienzo → `Formato` → `Fondo del lienzo` (o `Papel tapiz`) → `Color` lila claro
+`#EEF1FA` → `Transparencia` `0%`.
+
+**34.3 Títulos.** En cada página, `Insertar` → `Cuadro de texto` con el título
+arriba. Truco: copia el de `Panorama` (`Ctrl+C`) y pégalo (`Ctrl+V`) en las otras,
+cambiando el texto: "Demanda Tecnológica", "Perfiles Tecnológicos (ML)",
+"Evolución e IA".
+
+**34.4 Ordenar en cuadrícula.** Con el tema puesto los visuales ya se ven como
+tarjetas. Arrástralos para que no se pisen y dejen márgenes parejos. No busques
+precisión de píxel; que respiren.
+
+**34.5 Navegación.** `Insertar` → `Botones` → `Navegador` → `Navegador de páginas`.
+Crea un botón por página. Cópialo y pégalo (arriba a la derecha) en las 4.
+
+**34.6 Interacciones.** Selecciona un visual → pestaña `Formato` →
 `Editar interacciones`. Aparecen iconos sobre los demás visuales:
 🔍 filtrar · 📊 resaltar · 🚫 ninguna.
 Configúralo al menos en `Panorama`: que el anillo de fuentes **filtre** la tabla.
 
-**34.4 Navegación.** `Insertar` → `Botones` → `Navegador` → `Navegador de páginas`.
-Crea un botón por página. Cópialo y pégalo en las 4.
-
-**34.5** Guarda (`Ctrl+S`).
+**34.7** Guarda (`Ctrl+S`).
 
 ---
 

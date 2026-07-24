@@ -1,0 +1,48 @@
+{
+  "name": "Mercado IT Panama",
+  "dataColors": ["#2563EB", "#0EA5E9", "#7C3AED", "#F97316", "#16A34A", "#DC2626", "#0891B2", "#9333EA", "#CA8A04", "#4F46E5"],
+  "background": "#EEF1FA",
+  "foreground": "#1E293B",
+  "tableAccent": "#2563EB",
+  "textClasses": {
+    "title": { "fontFace": "Segoe UI Semibold", "fontSize": 13, "color": "#0F172A" },
+    "header": { "fontFace": "Segoe UI Semibold", "fontSize": 12, "color": "#334155" },
+    "label": { "fontFace": "Segoe UI", "fontSize": 10, "color": "#475569" }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [{ "show": true, "color": { "solid": { "color": "#FFFFFF" } }, "transparency": 0 }],
+        "border": [{ "show": true, "color": { "solid": { "color": "#E2E8F0" } }, "radius": 14 }],
+        "visualHeader": [{ "show": true }],
+        "dropShadow": [{
+          "show": true,
+          "color": { "solid": { "color": "#1E293B" } },
+          "position": "Outer",
+          "preset": "Custom",
+          "shadowSpread": 0,
+          "shadowBlur": 12,
+          "angle": 90,
+          "shadowDistance": 3,
+          "transparency": 86
+        }],
+        "title": [{
+          "show": true,
+          "fontColor": { "solid": { "color": "#0F172A" } },
+          "fontSize": 12,
+          "bold": true,
+          "alignment": "left",
+          "background": { "solid": { "color": "#FFFFFF" } }
+        }]
+      }
+    },
+    "card": {
+      "*": {
+        "background": [{ "show": true, "color": { "solid": { "color": "#2563EB" } }, "transparency": 0 }],
+        "border": [{ "show": true, "color": { "solid": { "color": "#2563EB" } }, "radius": 14 }],
+        "labels": [{ "color": { "solid": { "color": "#FFFFFF" } }, "fontSize": 26, "bold": true }],
+        "categoryLabels": [{ "show": true, "color": { "solid": { "color": "#DBEAFE" } }, "fontSize": 10 }]
+      }
+    }
+  }
+}
