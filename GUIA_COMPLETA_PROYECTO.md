@@ -1,6 +1,6 @@
 # Guía Didáctica Completa: Análisis del Mercado Laboral IT en Panamá
 
-> **Proyecto Universitario** — Gestión de la Información · UTP-FISC · Segundo Parcial  
+> **Proyecto Universitario** — Gestión de la Información · UTP-FISC · Segundo Parcial
 > **Grupo 4** — Repositorio: https://github.com/Gabriel1Garci/Topicos
 
 ---
